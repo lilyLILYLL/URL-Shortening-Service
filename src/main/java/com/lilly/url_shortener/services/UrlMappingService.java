@@ -31,4 +31,14 @@ public class UrlMappingService {
         return mapping.getLongUrl();
     }
 
+    public boolean deleteShortUrl(String shortCode){
+        long key = Base62.decode(shortCode);
+        if(repository.existsByCustomCode(key)){
+            repository.deleteByCustomCode(key);
+            return true;
+        }
+        return false;
+    }
+
+
 }

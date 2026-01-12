@@ -9,4 +9,7 @@ import java.util.Optional;
 public interface UrlMappingRepository extends MongoRepository<UrlMapping, String> {
 
     Optional<UrlMapping> findByCustomCode(long customCode);
+    boolean existsByCustomCode(long customCode);
+    long deleteByCustomCode(long customCode);
+
 }

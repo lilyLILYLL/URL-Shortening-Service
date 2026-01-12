@@ -16,11 +16,14 @@ public class UrlMappingController {
     }
     // Shorten URL
     @PostMapping("/api/shorten")
-    public UrlDto.Response shortenUrl(@RequestBody  UrlDto.Request request){
+    public ResponseEntity<UrlDto.Response> shortenUrl(@RequestBody  UrlDto.Request request){
         String originalUrl = request.longUrl();
         UrlMapping mapping = service.shortenUrl(originalUrl);
 
-        return new UrlDto.Response(mapping.getShortCode(),originalUrl, mapping.getCreatedAt(), mapping.getAccessCount());
+        UrlDto.Response responseDto =  new UrlDto.Response(mapping.getShortCode(),originalUrl, mapping.getCreatedAt(), mapping.getAccessCount());
+
+        // Return 201 Created with the body
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
 
     }
 
@@ -33,6 +36,18 @@ public class UrlMappingController {
         return ResponseEntity.status(HttpStatus.FOUND)
                 .location(URI.create(originalUrl))
                 .build();
+
+    }
+    //Delete Short URL
+    // The endpoint should return a 204 No Content status code if the short URL was successfully deleted or a 404 Not Found status code if the short URL was not found.
+    @DeleteMapping("/shorten/{shortCode}")
+    public ResponseEntity<Void> deleteShortCode(@PathVariable String shortCode){
+        boolean deleted = service.deleteShortUrl(shortCode);
+
+        if(deleted){
+            return ResponseEntity.noContent().build();  // 204 No Content
+        }
+        return ResponseEntity.notFound().build(); // 404 Not Found
 
     }
 
