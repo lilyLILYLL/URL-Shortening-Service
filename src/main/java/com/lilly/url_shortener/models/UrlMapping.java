@@ -24,6 +24,7 @@ public class UrlMapping {
 
     public UrlMapping(){
         this.createdAt = LocalDateTime.now();
+        this.accessCount = 0;
 
     }
 

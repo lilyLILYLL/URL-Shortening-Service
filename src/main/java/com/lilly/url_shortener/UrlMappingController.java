@@ -70,5 +70,11 @@ public class UrlMappingController {
 
     }
 
+    //Get Access Stats
+    @GetMapping("/stats/{shortCode}")
+    public ResponseEntity<UrlDto.AccessStatsResponse> getAccessStats(@PathVariable String shortCode){
+        long accessCount = service.getAccessStats(shortCode);
+        return  ResponseEntity.ok(new UrlDto.AccessStatsResponse(accessCount));
+    }
 
 }

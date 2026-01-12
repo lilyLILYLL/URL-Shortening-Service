@@ -30,14 +30,19 @@ public class UrlMappingService {
         mapping.setLongUrl(longUrl);
         mapping.setShortCode(shortCode);
         mapping.setCustomCode(seq);
-        mapping.setAccessCount(0);
         return repository.save(mapping);
     }
 
     // get original url
     public String getOriginalUrl(String shortCode){
+        // 1. Find the URL mapping
         long key = Base62.decode(shortCode);
         UrlMapping mapping =  repository.findByCustomCode(key).orElseThrow(() -> new NoSuchElementException("URL not found for code " + shortCode));
+
+        // 2. Increment the count asynchronously
+        repository.incrementAccessCount(key);
+
+        // 3. Return the long URL for redirection
         return mapping.getLongUrl();
     }
 
@@ -63,6 +68,11 @@ public class UrlMappingService {
         // 3. Save to the database
         return  repository.save(mapping);
 
+    }
+    public long getAccessStats(String shortCode){
+        long key = Base62.decode(shortCode);
+        UrlMapping mapping = repository.findByCustomCode(key).orElseThrow(() -> new NoSuchElementException("Short URL not found: " + shortCode));
+        return mapping.getAccessCount();
     }
 
 
