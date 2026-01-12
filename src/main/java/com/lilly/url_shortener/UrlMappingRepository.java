@@ -1,5 +1,6 @@
 package com.lilly.url_shortener;
 
+import com.lilly.url_shortener.models.UrlMapping;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

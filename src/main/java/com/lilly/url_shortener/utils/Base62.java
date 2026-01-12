@@ -1,5 +1,6 @@
 package com.lilly.url_shortener.utils;
 
+import java.time.Instant;
 import java.util.concurrent.ThreadLocalRandom;
 
 public  class Base62 {
@@ -9,7 +10,7 @@ public  class Base62 {
     public static String encode(long value){
         StringBuilder str = new StringBuilder();
         while(value>0){
-            str.append(ALPHABET.charAt((int) value%BASE));
+            str.append(ALPHABET.charAt((int) (value%BASE)));
             value /= BASE;
         }
 
@@ -20,12 +21,17 @@ public  class Base62 {
     public static long decode(String shortCode){
         long res = 0;
         for(char c: shortCode.toCharArray()){
-            res = res*BASE + shortCode.indexOf(c);
+            res = res*BASE + ALPHABET.indexOf(c);
         }
         return res;
     }
     public static String createRandomShortCode(){
-        long randomNum = ThreadLocalRandom.current().nextInt(1_000_001, Integer.MAX_VALUE);
+        long currentMillis = Instant.now().toEpochMilli(); // e.g., 1768284180123
+        int randomPart = ThreadLocalRandom.current().nextInt(1000);
+        // Combine them (shift millis to make room for random part)
+        // Formula: (Timestamp * 1000) + Random
+        long randomNum =  currentMillis*1000+ randomPart;
+
         return encode(randomNum);
     }
 }

@@ -3,7 +3,10 @@ import java.time.LocalDateTime;
 
 public class UrlDto{
     // Request DTO
-    public record Request(String longUrl){}
+    public record CreateRequest(String longUrl){}
+
+    // Update Request DTO
+    public record UpdateRequest(String newLongUrl){}
 
     // Response DTO
     public record Response(String shortCode,String longUrl, LocalDateTime expiryDate, long accessCount){

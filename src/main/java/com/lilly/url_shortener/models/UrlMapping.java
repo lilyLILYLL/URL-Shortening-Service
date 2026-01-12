@@ -1,4 +1,4 @@
-package com.lilly.url_shortener;
+package com.lilly.url_shortener.models;
 
 import com.lilly.url_shortener.utils.Base62;
 import lombok.Data;
@@ -27,8 +27,4 @@ public class UrlMapping {
 
     }
 
-    public void setShortCode(String shortCode) {
-        this.shortCode = shortCode;
-        this.customCode = Base62.decode(shortCode);
-    }
 }
