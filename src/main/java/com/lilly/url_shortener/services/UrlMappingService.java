@@ -1,7 +1,7 @@
 package com.lilly.url_shortener.services;
 
 import com.lilly.url_shortener.models.UrlMapping;
-import com.lilly.url_shortener.UrlMappingRepository;
+import com.lilly.url_shortener.repositories.UrlMappingRepository;
 import com.lilly.url_shortener.utils.Base62;
 import org.springframework.stereotype.Service;
 

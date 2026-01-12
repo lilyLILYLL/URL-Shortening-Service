@@ -1,4 +1,4 @@
-package com.lilly.url_shortener;
+package com.lilly.url_shortener.controllers;
 
 import com.lilly.url_shortener.dtos.UrlDto;
 import com.lilly.url_shortener.models.UrlMapping;
