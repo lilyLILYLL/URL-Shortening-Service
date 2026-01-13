@@ -25,13 +25,5 @@ public  class Base62 {
         }
         return res;
     }
-    public static String createRandomShortCode(){
-        long currentMillis = Instant.now().toEpochMilli(); // e.g., 1768284180123
-        int randomPart = ThreadLocalRandom.current().nextInt(1000);
-        // Combine them (shift millis to make room for random part)
-        // Formula: (Timestamp * 1000) + Random
-        long randomNum =  currentMillis*1000+ randomPart;
 
-        return encode(randomNum);
-    }
 }

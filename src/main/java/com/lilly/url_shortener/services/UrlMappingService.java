@@ -9,6 +9,8 @@ import java.util.NoSuchElementException;
 
 @Service
 public class UrlMappingService {
+    private static final String SEQUENCE_NAME = "short_code_seq";
+
     private final UrlMappingRepository repository;
     private final SequenceGeneratorService sequenceGenerator;
 
@@ -20,7 +22,7 @@ public class UrlMappingService {
     // shorten url
     public UrlMapping shortenUrl(String longUrl){
         // 1. Get the next unique number (e.g., 10001)
-        long seq = sequenceGenerator.generateSequence("short_code_seq");
+        long seq = sequenceGenerator.generateSequence(SEQUENCE_NAME);
 
         // 2. Convert to Base62 string (e.g., "abc")
         String shortCode = Base62.encode(seq);
