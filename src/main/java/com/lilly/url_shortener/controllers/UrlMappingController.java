@@ -12,10 +12,11 @@ import java.net.URI;
 @RestController
 @RequestMapping("/url-mapping")
 public class UrlMappingController {
-    UrlMappingService service;
+    private final UrlMappingService service;
     public UrlMappingController(UrlMappingService service){
         this.service = service;
     }
+
     // Shorten URL
     @PostMapping
     public ResponseEntity<UrlDto.Response> shortenUrl(@RequestBody UrlDto.CreateRequest request){

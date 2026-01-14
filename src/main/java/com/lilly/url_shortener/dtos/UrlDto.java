@@ -1,4 +1,6 @@
 package com.lilly.url_shortener.dtos;
+import org.springframework.cglib.core.Local;
+
 import java.time.LocalDateTime;
 
 public class UrlDto{
@@ -15,5 +17,10 @@ public class UrlDto{
     public record AccessStatsResponse(long accessCount){}
 
     // Error DTO (for exceptions)
-    public record Error(String message, int status) {}
+    public record Error(String message, int status, LocalDateTime timestamp) {
+        public Error(String message, int status){
+            this(message, status,  LocalDateTime.now());
+        }
+
+    }
 }

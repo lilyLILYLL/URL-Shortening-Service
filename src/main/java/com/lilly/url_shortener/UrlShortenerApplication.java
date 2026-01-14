@@ -36,7 +36,7 @@ public class UrlShortenerApplication {
 
 		}catch (Exception e) {
 			System.err.println("!!! CRITICAL ERROR CREATING MONGO BEAN !!!");
-			e.printStackTrace(); // <--- THIS WILL SHOW YOU THE REAL ERROR
+			e.printStackTrace();
 			throw e;
 		}
 
