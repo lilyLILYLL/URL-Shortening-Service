@@ -1,5 +1,6 @@
 # URL Shortening Service
 URL Shortener is a Spring Boot + MongoDB service that converts long URLs into short Base62 codes, supports custom-code lookups, tracks access counts, and lets you update/delete mappings. It’s designed as a simple REST API that can be deployed locally or to a cloud environment.
+
  <img width="766" height="266" alt="Screenshot 2026-01-14 at 1 56 48 pm" src="https://github.com/user-attachments/assets/2be79ae1-d472-43dd-8756-1e062a272587" />
 
  
